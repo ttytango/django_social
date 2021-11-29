@@ -17,10 +17,12 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
+from .views import HomePage
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('user.urls')),
+    path('', HomePage.as_view(), name='homepage'),
 ]
 
 if settings.DEBUG:
