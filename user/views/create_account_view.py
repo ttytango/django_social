@@ -14,6 +14,6 @@ class CreateAccountView(CreateView):
     success_url = reverse_lazy('index')
 
     def form_valid(self, form):
-        messages.success(self.request, f'Your account has been created!')
+        messages.success(self.request, 'Your account has been created!')
         return super().form_valid(form)
 

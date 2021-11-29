@@ -8,5 +8,8 @@ class Profile(models.Model):
     middle_names = models.CharField(max_length=128)
     locality = models.CharField(max_length=30, null=True)
 
+    # def __str__(self):
+    #     return str(f"{self.last_name}, {self.last_name}")
+
     def __str__(self):
-        return str(f"{self.last_name}, {self.last_name}")
+        return str(f"{self.pk}")
