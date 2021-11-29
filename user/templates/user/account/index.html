@@ -1,0 +1,13 @@
+{% extends 'user/base.html' %}
+{% load bootstrap5 %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+        You are currently logged in as {{ user.email }}
+        {% else %}
+        You are currently logged out
+    {% endif %}
+{% endblock content %}

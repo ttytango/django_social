@@ -1,0 +1,22 @@
+{% extends 'user/base.html' %}
+{% load bootstrap5 %}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+{% bootstrap_messages %}
+<div class="w-50 mx-auto border rounded p-4 m-4">
+<h2>Login</h2>
+<form action="" method="post">
+    {% csrf_token %}
+
+    {% bootstrap_form form %}
+
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">
+          Register
+        </button>
+    {% endbuttons %}
+</form>
+</div>
+{% endblock content %}
