@@ -1,0 +1,13 @@
+{% extends 'user/base.html' %}
+{% load static i18n bootstrap5 %}
+{% block title %}Search Results{% endblock title %}
+
+{% block content %}
+
+        <ul class="list-group list-group-flush">
+            {% for item in search_results %}
+                <li class="list-group-item list-group-item-dark" style="font-size: 1.4rem;"><a href="{% url 'user:profile-detail' item.id %}" style="text-decoration: none;">{{  item.first_name }} {{ item.last_name }}</a></li>
+            {% endfor %}
+        </ul>
+
+{% endblock content %}

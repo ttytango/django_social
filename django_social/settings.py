@@ -121,8 +121,8 @@ AUTH_USER_MODEL = 'user.Account'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-LOGOUT_REDIRECT_URL = "index"
-LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = "user:index"
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 

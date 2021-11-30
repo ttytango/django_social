@@ -5,15 +5,19 @@
 
 {% block content %}
    <div class="w-50 mx-auto border rounded p-4 m-4">
-    <form method="post">
-        {% csrf_token %}
+   <h6 class="text-muted">{{ email }}</h6>
+   <form method="post"  enctype='multipart/form-data'>
+       {% csrf_token %}
         {% bootstrap_form form %}
 
         {% buttons %}
-            <button type="submit" class="btn btn-primary">
-              Save
-            </button>
-            <a href="{% url 'index' %}">Back</a>
+            <div class="d-flex justify-content-evenly align-items-center">
+                <a class="btn btn-danger" href="{% url 'user:index' %}">Cancel</a>
+
+                <button type="submit" class="btn btn-primary">
+                  Save
+                </button>
+            </div>
         {% endbuttons %}
 
     </form>
