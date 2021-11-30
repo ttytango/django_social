@@ -38,9 +38,11 @@
                 {% endif %}
             </ul>
           </li>
+      {% if user.is_authenticated%}
         <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
+          <a class="nav-link" href="{% url 'user:profile-detail' user.id %}">Profile</a>
         </li>
+      {% endif %}
       </ul>
       <form class="d-flex" action="{% url 'user:search-profiles' %}" method="get">
         <input class="form-control me-2"
