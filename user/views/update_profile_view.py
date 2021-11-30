@@ -13,7 +13,7 @@ class ProfileEditView(LoginRequiredMixin, UpdateView):
     model = Profile
     template_name = 'user/account/edit_profile.html'
     success_message = _('Your profile has been successfully updated')
-    success_url = reverse_lazy('user:index')
+    # success_url = reverse_lazy('user:profile-detail')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -35,4 +35,6 @@ class ProfileEditView(LoginRequiredMixin, UpdateView):
     #     return self.form_valid(self)
     #
     #     # print(self.cleaned_data)
-    #
+
+    def get_success_url(self):
+        return reverse_lazy('user:profile-detail', kwargs = {'pk': self.request.user.id})
