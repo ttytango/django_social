@@ -8,7 +8,11 @@ from ..views import (
     ProfileEditView,
     ProfileDetailView,
     ProfileSearchView,
+    PostCreateView,
+    PostListView,
+    PostUpdateView,
 )
+from ..views.post_create_view import PostCreateView
 
 app_name = 'user'
 
@@ -41,4 +45,16 @@ urlpatterns = [
     path('profiles/',
          ProfileSearchView.as_view(),
          name="search-profiles"),
+
+    path('post/create/',
+         PostCreateView.as_view(),
+         name='create-post'),
+
+    path('<int:pk>/posts/',
+         PostListView.as_view(),
+         name='post-list'),
+
+    path('post/<int:pk>/edit',
+         PostUpdateView.as_view(),
+         name='post-detail'),
 ]

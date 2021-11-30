@@ -1,0 +1,11 @@
+{% extends 'user/base.html'%}
+{% load static i18n bootstrap5 %}
+
+{% block content %}
+
+    {{ post.content }}
+    <form action="" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success">Add</button>
+    </form>
+{% endblock content %}

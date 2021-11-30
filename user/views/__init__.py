@@ -4,3 +4,6 @@ from .update_profile_view import ProfileEditView
 from .profile_detail_view import ProfileDetailView
 from .custom_login_view import CustomLoginView
 from .profile_search_view import ProfileSearchView
+from .post_create_view import PostCreateView
+from .post_list_view import PostListView
+from .post_update_view import PostUpdateView

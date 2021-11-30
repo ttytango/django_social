@@ -1,0 +1,30 @@
+{% extends 'user/base.html'%}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    {% include 'user/partials/user_profile_fragment.html' %}
+
+    <div class="m-4 p-2">
+        <ul class="list-group list-group-flush m-4 p-2 border">
+            {% for post in posts %}
+                <li class="list-group-item list-group-item-dark" style="font-size: 1.4rem;">
+                    <div class="d-flex justify-content-evenly p-1">
+                        <h4>{{ post.content }}</h4>
+                        <span class="flex-grow-1"></span>
+                            <a class="btn btn-primary" href="{% url 'user:post-detail' post.id %}">Like</a>
+                    </div>
+                </li>
+                 <div class="d-flex justify-content-evenly p-1">
+                    <span class="flex-grow-1"></span>
+                     {{ request }}
+
+                <p>{{ post.date_time_created }} - Likes: <strong>{{ post.postlikes_set.count }}</strong></p>
+                 </div>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+
+{% endblock %}

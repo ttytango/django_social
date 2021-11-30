@@ -1,0 +1,11 @@
+<div class="w-75 mx-auto border rounded p-4 m-4">
+
+   <div class="d-flex bg-dark align-content-center justify-content-start" style="width: 250px; height: 250px;">
+        {% if profile.profile_image %}
+            <img src="{{ profile.profile_image.url }}" alt="{{ profile.profile_image }}"/>
+        {% endif %}
+   </div>
+   <h2>{{ profile.first_name }} {{ profile.last_name }}</h2>
+   <h4>Location: {{ profile.locality }}</h4>
+   <a href="{% url 'user:post-list' profile.id %}">Posts</a>
+</div>
