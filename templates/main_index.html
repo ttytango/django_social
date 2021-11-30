@@ -3,5 +3,9 @@
 {% block title %}Index{% endblock title %}
 {% block content %}
 <h1 class="text-center">Index</h1>
+    <div class="p-4 text-center bg-dark rounded" style="width: 250px; margin: 0 auto;">
+<a class="btn btn-success" href="{% url 'user:register' %}">Register Now!</a>
+<a class="btn btn-light" href="{% url 'user:login' %}">Login</a>
 
+    </div>
 {% endblock content %}

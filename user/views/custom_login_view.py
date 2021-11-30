@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 
 from ..models import Profile
 
@@ -10,6 +11,8 @@ class CustomLoginView(LoginView):
     """
         A custom class to login straight to user profile using pk
     """
+
+    template_name = "user/forms/auth_form.html"
 
     def check_user_profile_partially_complete(self):
         """
@@ -20,6 +23,13 @@ class CustomLoginView(LoginView):
         account_id = self.request.user.id
         user_profile = Profile.objects.get(id=account_id)
         return user_profile.is_partially_complete
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = _("Login")
+        context['form_title'] = _("Login")
+        context['forgot_password'] = True
+        return context
 
     def get_success_url(self):
         """
