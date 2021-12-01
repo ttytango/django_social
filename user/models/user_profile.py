@@ -12,9 +12,6 @@ class Profile(models.Model):
     locality = models.CharField(max_length=30, null=True)
     profile_image = models.ImageField(upload_to='users/profile_images/', null=True, blank=True)
 
-    # def __str__(self):
-    #     return str(f"{self.last_name}, {self.last_name}")
-
     def __str__(self):
         return str(f"{self.last_name}, {self.first_name}")
 

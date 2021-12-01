@@ -17,15 +17,11 @@ class PostCreateView(CreateView):
         context['form_title'] = _("Create a Post")
         return context
 
-    #
-    # def post(self, request, *args, **kwargs):
-    #     return super().post(request, *args, **kwargs)
-
     def form_valid(self, form):
         """If the form is valid, save the associated model."""
         form.instance.user = self.request.user
         self.object = form.save()
-        return super ().form_valid (form)
+        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse_lazy('user:profile-detail', kwargs={'pk': self.request.user.id})

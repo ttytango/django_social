@@ -14,6 +14,6 @@ class PostListView(ListView):
         return context
 
     def get_queryset(self):
-        qs = Post.objects.filter(user_id=self.kwargs['pk'])
+        qs = Post.objects.filter(user_id=self.kwargs['pk']).order_by('-date_time_created')
         return qs
 

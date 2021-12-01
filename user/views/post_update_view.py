@@ -1,7 +1,8 @@
+from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import UpdateView
-
+from django.utils.translation import gettext_lazy as _
 from ..models import Post
 
 class PostUpdateView(UpdateView):
@@ -18,9 +19,18 @@ class PostUpdateView(UpdateView):
 
     def form_valid(self, form):
         self.object = self.get_object()
-        like = self.object.postlikes_set.create(user_id=self.request.user.id, post_id=self.kwargs['pk'])
-        like.save()
-        return super().form_valid(form)
+        user_id = self.request.user.id
+        post_id = self.kwargs['pk']
+        object_exists = self.object.postlikes_set.filter(user_id=user_id, post_id=post_id)
+        if not object_exists:
+            like = self.object.postlikes_set.create(user_id=user_id, post_id=post_id)
+            like.save()
+            messages.success(message="Great!", request=self.request)
+            return super().form_valid(form)
+        else:
+            messages.error(message="You have already liked this post", request=self.request)
+            return HttpResponseRedirect(self.get_success_url())
+
 
     def get_success_url(self):
         """Return the url of the object's list view"""

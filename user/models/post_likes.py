@@ -5,8 +5,8 @@ from ..models import Profile, Post
 
 
 class PostLikes(models.Model):
-    user = models.ForeignKey(Profile, on_delete=models.PROTECT)
-    post = models.ForeignKey(Post, on_delete=models.PROTECT)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
     date_liked = models.DateTimeField(auto_now_add=True)
 
     class Meta:
