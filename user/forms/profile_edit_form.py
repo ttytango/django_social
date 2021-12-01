@@ -14,10 +14,3 @@ class ProfileEditForm(ModelForm):
         self.fields['middle_names'].required = False
         self.fields['profile_image'].required = False
 
-    # def __init__(self, *args, **kwargs):
-    #     form = super(ProfileEditForm, self).__init__(*args, **kwargs)
-    #     form['email'] = self.request.user.id
-    #     for index in range(int(nb_dogs)):
-    #         self.fields.update({
-    #             'dog_%s_name' % index: forms.CharField(label=_('Name'), required=False, max_length=512),
-    #         })
