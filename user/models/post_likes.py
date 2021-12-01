@@ -12,3 +12,4 @@ class PostLikes(models.Model):
     class Meta:
         verbose_name = _('like')
         verbose_name_plural = _('likes')
+

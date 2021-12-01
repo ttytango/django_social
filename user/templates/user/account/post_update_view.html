@@ -2,10 +2,11 @@
 {% load static i18n bootstrap5 %}
 
 {% block content %}
-
-    {{ post.content }}
+<div class="bg-light p-4 m-4">
     <form action="" method="post">
         {% csrf_token %}
-        <button type="submit" class="btn btn-success">Add</button>
+        <p>Content: {{ post.content }}</p>
+        <button type="submit" class="btn btn-success">Confirm Like</button>
     </form>
+</div>
 {% endblock content %}

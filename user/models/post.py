@@ -8,4 +8,6 @@ class Post(models.Model):
     date_time_created = models.DateTimeField(auto_now_add=True)
     date_time_updated = models.DateTimeField(auto_now=True)
 
-
+    @property
+    def total_likes(self):
+        return self.postlikes_set.count()

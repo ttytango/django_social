@@ -1,0 +1,52 @@
+<style>
+    .sr-only {
+    position: absolute;
+    margin: -1px 0 0 -1px;
+    padding: 0;
+    display: block;
+    width: 1px;
+    height: 1px;
+    font-size: 1px;
+    line-height: 1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+    outline: 0;
+    }
+</style>
+
+{#{% if is_paginated %}#}
+{#  <ul class="pagination">#}
+{#    {% if page_obj.has_previous %}#}
+{#      <li><a class="p-2" style="font-size: 1.2rem;" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>#}
+{#    {% else %}#}
+{#      <li class="disabled"><span  class="p-2" style="font-size: 1.2rem;" >&laquo;</span></li>#}
+{#    {% endif %}#}
+{#    {% for i in paginator.page_range %}#}
+{#      {% if page_obj.number == i %}#}
+{#        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>#}
+{#      {% else %}#}
+{#        <li><a href="?page={{ i }}">{{ i }}</a></li>#}
+{#      {% endif %}#}
+{#    {% endfor %}#}
+{#    {% if page_obj.has_next %}#}
+{#      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>#}
+{#    {% else %}#}
+{#      <li class="disabled"><span>&raquo;</span></li>#}
+{#    {% endif %}#}
+{#  </ul>#}
+{#{% endif %}#}
+{% if is_paginated %}
+  <nav aria-label="Page navigation conatiner"></nav>
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+    <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+    {% endif %}
+    {% if page_obj.has_next %}
+    <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+
+    {% endif %}
+  </ul>
+  </nav>
+</div>
+{% endif %}
