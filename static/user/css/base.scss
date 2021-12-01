@@ -1,0 +1,36 @@
+//body {
+//  background: rgba(196, 193, 170, 0.38);
+//
+//}
+.main-container {
+  //background: white;
+  width: 100%;
+  display: flex;
+  //justify-content: flex-end;
+  align-items: flex-end;
+  flex-direction: column;
+  flex-wrap: nowrap;
+
+  .list-group {
+    width: 100%;
+    background: rgba(222,222,222,.1)
+  }
+
+
+    //background: #ff3333;
+}
+.profile-jumbo {
+  background: #eaeaea;
+
+}
+.image-box {
+  border-radius: 50%;
+  width: 80%;
+  //min-width: 500px;
+  height: 350px;
+  //background: #343;
+  background: radial-gradient(circle, rgba(255, 225, 225, 0.1), rgba(112,112,112,0.2));
+  img {
+    filter: drop-shadow(2px 2px 8px rgba(20, 12, 20, 0.7));
+  }
+}

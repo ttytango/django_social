@@ -1,3 +1,27 @@
-body {
-    background: blue;
+.main-container {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  flex-wrap: nowrap;
 }
+.main-container .list-group {
+  width: 100%;
+  background: rgba(222, 222, 222, 0.1);
+}
+
+.profile-jumbo {
+  background: #eaeaea;
+}
+
+.image-box {
+  border-radius: 50%;
+  width: 80%;
+  height: 350px;
+  background: radial-gradient(circle, rgba(255, 225, 225, 0.1), rgba(112, 112, 112, 0.2));
+}
+.image-box img {
+  filter: drop-shadow(2px 2px 8px rgba(20, 12, 20, 0.7));
+}
+
+/*# sourceMappingURL=base.css.map */

@@ -11,6 +11,7 @@ class PostListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['profile'] = Profile.objects.get(id=self.kwargs['pk'])
+        context['nothing_here_message'] = f"This user has not published any {self.context_object_name} yet"
         return context
 
     def get_queryset(self):

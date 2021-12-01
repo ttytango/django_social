@@ -7,5 +7,5 @@
    </div>
    <h2>{{ profile.first_name }} {{ profile.last_name }}</h2>
    <h4>Location: {{ profile.locality }}</h4>
-   <a class="btn btn-dark text-white" href="{% url 'user:post-list' profile.id %}">Posts</a>
+   <a class="btn btn-dark text-white" href="{% url 'user:profile-detail' profile.id %}">User's Area</a>
 </div>
