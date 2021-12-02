@@ -5,10 +5,10 @@ from ..models import Post
 
 
 class PostCreateForm(ModelForm):
-
-    content = forms.CharField(
-        widget=forms.Textarea(),
-    )
+    #
+    # content = forms.CharField(
+    #     widget=forms.Textarea(),
+    # )
 
     class Meta:
         model = Post
@@ -16,6 +16,8 @@ class PostCreateForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(PostCreateForm, self).__init__(*args, **kwargs)
+        self.fields['content'] = forms.CharField()
+        self.fields['content'].widget = forms.Textarea()
         self.fields['content'].label = _("Be creative")
         self.fields['content'].widget.attrs.update({
                 'placeholder': _("Write something here..."),

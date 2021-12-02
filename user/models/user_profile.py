@@ -1,8 +1,10 @@
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.urls import reverse
 
+Account = get_user_model()
 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -11,6 +13,7 @@ class Profile(models.Model):
     middle_names = models.CharField(max_length=128, blank=True)
     locality = models.CharField(max_length=30, null=True)
     profile_image = models.ImageField(upload_to='users/profile_images/', null=True, blank=True)
+    friends = models.ManyToManyField("Profile", blank=True)
 
     def __str__(self):
         return str(f"{self.last_name}, {self.first_name}")
@@ -27,11 +30,8 @@ class Profile(models.Model):
         else:
             return False
 
-    #
-    # def get_absolute_url(self):
-    #     return reverse('user:profile-detail', kwargs={'pk': self.pk})
+    @property
+    def email(self):
+        user = Account.objects.get(id=self.id)
+        return user.email
 
-    # def save(self, *args, **kwargs): # new
-    #     if not self.slug:
-    #         self.slug = slugify(str(f"{self.first_name} {self.last_name}"))
-    #     return super().save(*args, **kwargs)

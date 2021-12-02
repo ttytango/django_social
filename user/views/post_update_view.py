@@ -26,10 +26,9 @@ class PostUpdateView(UpdateView):
             like = self.object.postlikes_set.create(user_id=user_id, post_id=post_id)
             like.save()
             messages.success(message="Great!", request=self.request)
-            return super().form_valid(form)
         else:
             messages.error(message="You have already liked this post", request=self.request)
-            return HttpResponseRedirect(self.get_success_url())
+        return super().form_valid(form)
 
 
     def get_success_url(self):
