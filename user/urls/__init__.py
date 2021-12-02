@@ -57,4 +57,5 @@ urlpatterns = [
     path('post/<int:pk>/edit',
          PostUpdateView.as_view(),
          name='post-detail'),
+
 ]

@@ -9,51 +9,55 @@
         {% bootstrap_messages %}
     {% endif %}
     </div>
+
+
 {#    <div class="profile-jumbo container p-1 shadow">#}
+
+
     {% include 'user/partials/user_profile_fragment.html' %}
+
+
     <div class="d-flex justify-content-center">
         <div class="main-container m-4 p-2 shadow-sm">
 
-    {% include 'user/partials/button_group.html'%}
-        {% if posts %}
-        <ul class="list-group list-group-flush m-4 p-2 w-100">
-            {% for post in posts %}
-                    <div class="post-list-card">
+            {% include 'user/partials/button_group.html'%}
+            {% if posts %}
+                <ul class="list-group list-group-flush m-4 p-2 w-100">
+                    {% for post in posts %}
+                        <div class="post-list-card">
 
 
-                        <li class="list-group-item p-1 mt-4">
-                                                     <div class="inner-post-card">
+                            <li class="list-group-item p-1 mt-4">
+                                <div class="inner-post-card">
 
-                            <div class="d-flex justify-content-evenly p-1">
-                                <h4 class="align-self-center">{{ post.content }}</h4>
+                                     <div class="d-flex justify-content-evenly p-1">
+                                            <h4 class="align-self-center">{{ post.content }}</h4>
 
-                                <span class="flex-grow-1"></span>
-                                    <a class="btn btn-primary" href="{% url 'user:post-detail' post.id %}">Like</a>
-                            </div>
-                                                     </div>
-                            <div class="d-flex justify-content-evenly">
-                            <span class="flex-grow-1"></span>
-                        <p>{{ post.date_time_created }} - Likes: <strong>{{ post.total_likes }}</strong></p>
-                    </div>
-                    </li>
-{#                </div>#}
+                                            <span class="flex-grow-1"></span>
+                                         <a class="btn btn-primary" href="{% url 'user:post-detail' post.id %}">Like</a>
+                                     </div>
+                                </div>
+                                <div class="d-flex justify-content-evenly">
+                                    <span class="flex-grow-1"></span>
+                                    <p>{{ post.date_time_created }} - Likes: <strong>{{ post.total_likes }}</strong></p>
+                                </div>
+                            </li>
 
-                </div>
+                        </div>
 
-            {% endfor %}
+                    {% endfor %}
+                </ul>
+
                 <div class="d-flex justify-content-center m-2">
 
-        {% include 'user/partials/pagination.html'%}
-        </div>
+                    {% include 'user/partials/pagination.html'%}
+                </div>
 
-        </ul>
             {% else %}
-            {% include 'user/partials/no_list_data.html' %}
+                {% include 'user/partials/no_list_data.html' %}
+            {% endif %}
 
-        {% endif %}
-
+        </div>
     </div>
 {#    </div>#}
-
-
 {% endblock %}

@@ -13,5 +13,15 @@ class PostCreateForm(ModelForm):
     class Meta:
         model = Post
         fields = ('content', )
-        labels = {'content': _("Write some content to publish")}
+
+    def __init__(self, *args, **kwargs):
+        super(PostCreateForm, self).__init__(*args, **kwargs)
+        self.fields['content'].label = _("Be creative")
+        self.fields['content'].widget.attrs.update({
+                'placeholder': _("Write something here..."),
+                'cols': 40,
+                'rows': 10,
+            }
+        )
+
 
