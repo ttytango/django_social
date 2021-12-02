@@ -14,10 +14,8 @@ class FriendListView(ListView):
         return user
 
     def get_context_data(self, **kwargs):
-
-
         context = super().get_context_data(**kwargs)
-        context['title'] = _(f"{self.get_profile.first_name}")
+        context['title'] = _(f"{self.get_profile.first_name}'s Friends")
         context['profile'] = self.get_profile
         context['nothing_here_message'] = "You have no friends"
         return context
@@ -26,8 +24,3 @@ class FriendListView(ListView):
     def get_queryset(self):
         user = self.get_profile
         return user.friends.all()
-        # friends = Profile.objects
-        # # print(dir(user))
-        # # print(user.friends)
-        # return friends
-

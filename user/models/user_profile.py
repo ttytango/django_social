@@ -4,6 +4,8 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.urls import reverse
 
+from .expertise import Expertise
+
 Account = get_user_model()
 
 class Profile(models.Model):
@@ -14,6 +16,7 @@ class Profile(models.Model):
     locality = models.CharField(max_length=30, null=True)
     profile_image = models.ImageField(upload_to='users/profile_images/', null=True, blank=True)
     friends = models.ManyToManyField("Profile", blank=True)
+    expertise = models.ManyToManyField(Expertise, related_name='users')
 
     def __str__(self):
         return str(f"{self.last_name}, {self.first_name}")
