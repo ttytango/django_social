@@ -11,6 +11,7 @@ from ..views import (
     PostCreateView,
     PostListView,
     PostUpdateView,
+    FriendListView,
 )
 from ..views.post_create_view import PostCreateView
 
@@ -57,5 +58,9 @@ urlpatterns = [
     path('post/<int:pk>/edit',
          PostUpdateView.as_view(),
          name='post-detail'),
+
+    path('<int:pk>/friends/',
+         FriendListView.as_view(),
+         name='friend-list'),
 
 ]
