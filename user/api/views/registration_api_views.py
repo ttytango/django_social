@@ -1,3 +1,6 @@
+from datetime import datetime, timedelta
+
+import jwt
 from django.contrib.auth import get_user_model
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.views import APIView
@@ -27,5 +30,20 @@ class LoginApiView(APIView):
         if not user.check_password(password):
             raise AuthenticationFailed('Incorrect username or password.')
 
-        return Response({"message": "Successfully logged in"})
+        payload = {
+            "id": user.id,
+            "exp": datetime.utcnow() + timedelta(seconds=3600),
+            "iat": datetime.utcnow()
+        }
+
+        token = jwt.encode(payload, 'secret', algorithm='HS256').decode('utf-8')
+
+        response = Response()
+
+        response.data = {
+            "jwt": token
+        }
+        response.set_cookie(key='jwt', value=token, httponly=True)
+
+        return response
 
