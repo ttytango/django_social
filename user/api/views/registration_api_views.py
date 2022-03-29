@@ -13,6 +13,7 @@ User = get_user_model()
 class RegisterApiView(APIView):
 
     def post(self, request):
+        print(request.data)
         serializer = UserSerializer(data=request.data)
         serializer.is_valid()
         serializer.save()
@@ -47,3 +48,30 @@ class LoginApiView(APIView):
 
         return response
 
+
+class UserApiView(APIView):
+
+    def get(self, request):
+        token = request.COOKIES['jwt']
+        if not token:
+            raise AuthenticationFailed('Unauthenticated')
+
+        try:
+            payload = jwt.decode(token, 'secret', algorithm=['HS256'])
+        except jwt.ExpiredSignatureError:
+            raise AuthenticationFailed('Unauthenticated')
+
+        user = User.objects.filter(id=payload['id']).first()
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
+
+
+class LogoutView(APIView):
+
+    def post(self, request):
+        response = Response()
+        response.delete_cookie('jwt')
+        response.data = {
+            "message": "Logged out"
+        }
+        return response
