@@ -1,27 +1,45 @@
-<h2>Log In</h2>
-<div class="row" *ngIf="!authService.token">
-  <div class="col-sm-4">
-    <label>Username:</label><br />
-    <input type="email" name="login-username" [(ngModel)]="user.username">
-    <span *ngFor="let error of authService.errors.username"><br />
-    {{ error }}</span></div>
-  <div class="col-sm-4">
-    <label>Password:</label><br />
-    <input type="password" name="login-password" [(ngModel)]="user.password">
-    <span *ngFor="let error of authService.errors.password"><br />
-    {{ error }}</span>
-  </div>
-  <div class="col-sm-4">
-    <button (click)="login()" class="btn btn-primary">Log In</button>
-  </div>
-  <div class="col-sm-12">
-    <span *ngFor="let error of authService.errors.non_field_errors">{{ error }}<br /></span>
-  </div>
-</div>
-<div class="row" *ngIf="authService.token">
-  <div class="col-sm-12">You are logged in as {{ authService.username }}.<br />
-    Token Expires: {{ authService.token_expires }}<br />
-    <button (click)="refreshToken()" class="btn btn-primary">Refresh Token</button>
-    <button (click)="logout()" class="btn btn-primary">Log Out</button>
-  </div>
+<!--<h2>Log In</h2>-->
+<!--<div class="row" *ngIf="!authService.token">-->
+<!--  <div class="col-sm-4">-->
+<!--    <label>Username:</label><br />-->
+<!--    <input type="email" name="login-username" [(ngModel)]="user.username">-->
+<!--    <span *ngFor="let error of authService.errors.username"><br />-->
+<!--    {{ error }}</span></div>-->
+<!--  <div class="col-sm-4">-->
+<!--    <label>Password:</label><br />-->
+<!--    <input type="password" name="login-password" [(ngModel)]="user.password">-->
+<!--    <span *ngFor="let error of authService.errors.password"><br />-->
+<!--    {{ error }}</span>-->
+<!--  </div>-->
+<!--  <div class="col-sm-4">-->
+<!--    <button (click)="login()" class="btn btn-primary">Log In</button>-->
+<!--  </div>-->
+<!--  <div class="col-sm-12">-->
+<!--    <span *ngFor="let error of authService.errors.non_field_errors">{{ error }}<br /></span>-->
+<!--  </div>-->
+<!--</div>-->
+<!--<div class="row" *ngIf="authService.token">-->
+<!--  <div class="col-sm-12">You are logged in as {{ authService.username }}.<br />-->
+<!--    Token Expires: {{ authService.token_expires }}<br />-->
+<!--    <button (click)="refreshToken()" class="btn btn-primary">Refresh Token</button>-->
+<!--    <button (click)="logout()" class="btn btn-primary">Log Out</button>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div>
+  <h4>Sign in</h4>
+  <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+    <div class="form-control">
+      <label for="email"></label>
+      <input type="email" id="email" placeholder="Email" name="email" formControlName="email">
+    </div>
+    <div class="form-control">
+      <label for="password"></label>
+      <input type="password" id="password" placeholder="Password" name="password" formControlName="password">
+    </div>
+    <button type="submit">{{ isLoginMode ? 'Login' : 'Sign Up' }}</button>
+    | <button class="btn btn-primary" (click)="onSwitchMode()" type="button">
+          Switch to {{ isLoginMode ? 'Sign Up' : 'Login' }}
+        </button>
+  </form>
 </div>
