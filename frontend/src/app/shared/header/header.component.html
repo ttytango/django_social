@@ -1,8 +1,8 @@
-<div>
+<div class="flex flex-row p-4 bg-slate-200">
   <nav>
     <ul>
-      <li *ngIf="!isAuthenticated"><a routerLink="/auth">Login / Sign Up</a></li>
-      <li *ngIf="isAuthenticated"><a (click)="logout()">Logout</a></li>
+      <li *ngIf="!isAuthenticated"><a class="btn ring" routerLink="/auth">Login / Sign Up</a></li>
+      <li *ngIf="isAuthenticated"><a class="btn btn-danger" (click)="logout()">Logout</a></li>
     </ul>
   </nav>
 </div>
