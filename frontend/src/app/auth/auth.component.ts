@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import { AuthService } from './auth.service';
 
 @Component({
@@ -8,27 +9,32 @@ import { AuthService } from './auth.service';
 })
 export class AuthComponent implements OnInit {
   public user: any;
+  public isLoginMode = false;
+  authForm: FormGroup;
 
-  constructor(public authService: AuthService) { }
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
-    this.user = {
-      username: '',
-      password: ''
-    };
+    this.authForm = this.fb.group({
+      email: '',
+      password: '',
+    })
   }
 
-  login() {
-    this.authService.login({'username': this.user.username, 'password': this.user.password});
+  onSubmit(): void {
+    this.isLoginMode ?
+      this.authService.loginUser(this.authForm) :
+      this.authService.registerUser(this.authForm)
   }
 
-  refreshToken() {
-    this.authService.refreshToken();
+
+  onSwitchMode() {
+    this.isLoginMode = !this.isLoginMode;
   }
 
-  logout() {
-    this.authService.logout();
-  }
 
 
 }

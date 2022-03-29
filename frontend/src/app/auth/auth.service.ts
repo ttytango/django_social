@@ -1,74 +1,57 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
+import { Router } from '@angular/router';
+import {map, Observable, Subject} from "rxjs";
+import { IProfile } from '../profile/profile';
+
+export class User {
+  constructor(public email: string, public id: string) { }
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  url: string = environment.apiUrl;
+  subject: Subject<any> = new Subject();
+  obs: Observable<any> = this.subject.asObservable();
+  users: User[] = [];
 
-  // http options used for making API calls
-  private httpOptions: any;
-  private url: string = environment.apiUrl;
 
-  // the actual JWT token
-  public token: string;
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
-  // the token expiration date
-  public token_expires: Date;
-
-  // the username of the logged in user
-  public username: string;
-
-  // error messages received from the login attempt
-  public errors: any = [];
-
-  constructor(private http: HttpClient) {
-    this.httpOptions = {
-      headers: new HttpHeaders({'Content-Type': 'application/json'}),
-      // credentials: 'include'
-    };
+  notify = (data: any) => {
+    this.subject.next(data)
   }
 
-  // Uses http.post() to get an auth token from djangorestframework-jwt endpoint
-  public login(user) {
-    this.http.post(this.url + '/api-auth/login/', JSON.stringify(user), this.httpOptions).subscribe(
-      data => {
-        this.updateData(data['token']);
-      },
-      err => {
-        this.errors = err['error'];
-      }
-    );
+  registerUser(form) {
+      return this.http.post(this.url + '/register/', form.getRawValue())
+        .subscribe(response => console.log(response))
   }
 
-  // Refreshes the JWT token, to extend the time the user is logged in
-  public refreshToken() {
-    this.http.post(this.url + '/api-token-refresh/', JSON.stringify({token: this.token}), this.httpOptions).subscribe(
-      data => {
-        this.updateData(data['token']);
-      },
-      err => {
-        this.errors = err['error'];
-      }
-    );
+  loginUser(form) {
+      return this.http.post(this.url + '/login/', form.getRawValue(), {
+        withCredentials: true
+      }).subscribe(() => this.router.navigate(['/']))
   }
 
-  public logout() {
-    this.token = null;
-    this.token_expires = null;
-    this.username = null;
+  getCurrentUser(): Observable<User[]> {
+    return this.http.get<User[]>(this.url + '/user/', {withCredentials: true})
+      .pipe(
+        map((response: User[]) => {
+          return this.users = response
+        })
+    )
   }
 
-  private updateData(token) {
-    this.token = token;
-    this.errors = [];
-
-    // decode the token to read the username and expiration timestamp
-    const token_parts = this.token.split(/\./);
-    const token_decoded = JSON.parse(window.atob(token_parts[1]));
-    this.token_expires = new Date(token_decoded.exp * 1000);
-    this.username = token_decoded.username;
+  logout() {
+    return this.http.post(this.url + '/logout/', {}, {withCredentials: true})
+      .subscribe(() => this.router.navigate(['/auth']))
   }
+
 
 }

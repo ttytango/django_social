@@ -1,4 +1,10 @@
-<div *ngIf="profiles.length > 0">
+<div *ngIf="currentUser">
+  <p>Logged in as: {{currentUser.email}}
+</p>
+</div>
+
+
+<div *ngIf="profiles.length > 0 && currentUser">
 
   <div *ngFor="let profile of profiles">
     <a [routerLink]="[profile.user]">{{ profile.last_name }}, {{ profile.first_name }}</a>
