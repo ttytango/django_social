@@ -5,21 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClientModule, HttpClientXsrfModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HeaderComponent} from "./shared/header/header.component";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    // ReactiveFormsModule,
-    // HttpClientXsrfModule.withOptions({
-    //   cookieName: 'csrftoken',
-    //   headerName: 'X-CSRFTOKEN',
-    // })
   ],
   providers: [],
   bootstrap: [AppComponent]

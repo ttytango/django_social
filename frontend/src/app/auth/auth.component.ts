@@ -35,13 +35,6 @@ export class AuthComponent implements OnInit {
     this.isLoginMode = !this.isLoginMode;
   }
 
-  // refreshToken() {
-  //   this.authService.refreshToken();
-  // }
-  //
-  // logout() {
-  //   this.authService.logout();
-  // }
 
 
 }
