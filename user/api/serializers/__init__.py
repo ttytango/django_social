@@ -1,1 +1,2 @@
 from .profile_serializers import ProfileSerializer
+from .user_serializer import UserSerializer
