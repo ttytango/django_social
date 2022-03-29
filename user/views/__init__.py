@@ -8,3 +8,4 @@ from .post_create_view import PostCreateView
 from .post_list_view import PostListView
 from .post_update_view import PostUpdateView
 from .friend_list_view import FriendListView
+from .friend_request_create_view import FriendRequestCreateView

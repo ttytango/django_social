@@ -1,5 +1,14 @@
-from django.views.generic import TemplateView
+from django.views.generic.base import RedirectView
 
-class HomePage(TemplateView):
-    template_name = "main_index.html"
+
+class IndexRedirectView(RedirectView):
+
+    permanent = False
+    query_string = True
+    pattern_name = 'user:index'
+
+    def get_redirect_url(self, *args, **kwargs):
+        return super().get_redirect_url(*args, **kwargs)
+
+
 

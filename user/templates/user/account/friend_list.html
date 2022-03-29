@@ -23,8 +23,9 @@
 
             {% include 'user/partials/button_group.html'%}
     {% if friends %}
-    {% for friend in friends%}
-            {{ friend.user }}
+    {% for friend in friends %}
+            {{ friend }}
+        <a class="btn btn-primary" href="{% url 'user:profile-detail' friend.pk %}">Checkout Profile</a>
     {% endfor %}
         {% else %}
             {% include 'user/partials/no_list_data.html'%}

@@ -17,13 +17,13 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
-from .views import HomePage
+from .views import IndexRedirectView
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('user.urls')),
-    path('', HomePage.as_view(), name='homepage'),
+    path('', IndexRedirectView.as_view(), name='homepage'),
     path('password-reset/reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="user/forms/auth_form.html"), name="password_reset_confirm"),
     path('password-reset/complete/', auth_views.PasswordResetCompleteView.as_view(template_name="user/registration/password_reset_complete.html"), name="password_reset_complete"),
     path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(template_name="user/registration/password_reset_done.html"), name='password_reset_done'),

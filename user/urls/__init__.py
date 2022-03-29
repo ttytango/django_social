@@ -13,7 +13,6 @@ from ..views import (
     PostUpdateView,
     FriendListView,
 )
-from ..views.post_create_view import PostCreateView
 
 app_name = 'user'
 

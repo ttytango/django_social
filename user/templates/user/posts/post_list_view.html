@@ -43,12 +43,12 @@
                                 <div class="d-flex justify-content-evenly">
                                     <span class="flex-grow-1"></span>
 
-                                    <p>{{ post.date_time_created }} - Likes: <strong id="target">{{ post.total_likes }}</strong></p>
+                                    <p>{{ post.date_time_created }} - Likes: <strong id="target-likes">{{ post.total_likes }}</strong></p>
 
                                          <div class="d-flex align-items-start p-2">
 
 {#                                             <a class="btn btn-primary align-self-center" href="{% url 'user:post-detail' post.id %}">Like</a>#}
-                                             <form hx-post="{% url 'user:post-detail' post.id %}" method="POST" hx-trigger="submit" hx-target="#target" hx-swap="innerHTML">
+                                             <form hx-post="{% url 'user:post-detail' post.id %}" method="POST" hx-trigger="submit" hx-target="#target-likes" hx-swap="innerHTML">
 
                                                 <button class="btn btn-primary align-self-center" type="submit" href="{% url 'user:post-detail' post.id %}">Like</button>
                                              </form>

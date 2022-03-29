@@ -136,7 +136,11 @@ USE_TZ = True
 
 AUTH_USER_MODEL = 'user.Account'
 
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+# EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+
 EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
 
 
