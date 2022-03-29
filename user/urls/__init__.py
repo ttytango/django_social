@@ -61,5 +61,4 @@ urlpatterns = [
     path('<int:pk>/friends/',
          FriendListView.as_view(),
          name='friend-list'),
-
 ]

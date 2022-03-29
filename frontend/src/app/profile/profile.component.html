@@ -1,0 +1,14 @@
+<div *ngIf="profiles.length > 0">
+
+  <div *ngFor="let profile of profiles">
+    <a [routerLink]="[profile.user]">{{ profile.last_name }}, {{ profile.first_name }}</a>
+      <span> - {{ profile.locality }}</span>
+  </div>
+
+</div>
+
+
+<div *ngIf="profiles.length === 0">
+  <h3>No profiles yet!</h3>
+</div>
+
