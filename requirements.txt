@@ -1,3 +1,4 @@
+algorithm==1.2.0
 appnope==0.1.2
 asgiref==3.4.1
 async-timeout==4.0.2
@@ -11,6 +12,7 @@ click==8.1.0
 coverage==6.1.1
 debugpy==1.4.3
 decorator==5.1.0
+dependency-injection==1.2.0
 Deprecated==1.2.13
 distlib==0.3.3
 Django==3.2.9
